@@ -21,13 +21,28 @@ export const ContactSection = () => {
 
     setIsSubmitting(true);
 
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const message = e.target.message.value;
+
+    // Buat URL mailto dengan data form
+    const subject = `Message from ${name}`;
+    const body = `From: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+    const mailtoLink = `mailto:jovancojojo268@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+    // Buka email client
+    window.location.href = mailtoLink;
+
+    // Tampilkan toast sukses setelah mengarahkan
     setTimeout(() => {
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
       });
       setIsSubmitting(false);
-    }, 1500);
+      // Reset form
+      e.target.reset();
+    }, 500);
   };
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">

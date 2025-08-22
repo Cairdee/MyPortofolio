@@ -30,7 +30,7 @@ I enjoy tackling challenging tasks and finding creative ways to solve problems, 
               </a>
 
               <a
-                href=""
+                href="https://www.canva.com/design/DAGu5NpLVgE/A44baMhZJkGX9NbLjGt4zg/edit?utm_content=DAGu5NpLVgE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
               >
                 Download CV

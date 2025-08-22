@@ -3,12 +3,12 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "Application Booking Flight",
-    description: "A beautiful mobile app using Flutter.",
+    title: "Application Booking Mobile",
+    description: "A stunning mobile booking application built with Flutter, offering a seamless experience with easy navigation, real-time booking, and a visually appealing interface.",
     image: "/projects/project1.png",
-    tags: ["Flutter"],
+    tags: ["Flutter","Dart"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Cairdee/BookingApp.git",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const projects = [
     image: "/projects/project2.png",
     tags: ["Flutter", "PHP", "MySQL", "Laravel"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Cairdee/backend-campaign-coffe.git",
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const projects = [
     image: "/projects/project3.png",
     tags: ["PHP", "Laravel"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Cairdee/StudentList.git",
   },
 ];
 
