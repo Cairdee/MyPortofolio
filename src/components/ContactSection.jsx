@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser"; // Import EmailJS
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -24,31 +25,51 @@ export const ContactSection = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const message = e.target.message.value;
+    const time = new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Jakarta",
+      dateStyle: "medium",
+      timeStyle: "short",
+    }); // WIB time
 
-    // Buat URL mailto dengan data form
-    const subject = `Message from ${name}`;
-    const body = `From: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
-    const mailtoLink = `mailto:jovancojojo268@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    const serviceId = "service_o753aqw"; 
+    const templateId = "template_p2b0roa"; 
+    const userId = "yadwvJZFmBgXhEqnB"; 
 
-    // Buka email client
-    window.location.href = mailtoLink;
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+      to_email: "jovancojojo268@gmail.com", // Email tujuan
+      time: time, // Tambahkan waktu
+    };
 
-    // Tampilkan toast sukses setelah mengarahkan
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    emailjs
+      .send(serviceId, templateId, templateParams, userId)
+      .then((response) => {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        e.target.reset();
+      })
+      .catch((error) => {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again later.",
+          variant: "destructive",
+        });
+        console.error("EmailJS error:", error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      setIsSubmitting(false);
-      // Reset form
-      e.target.reset();
-    }, 500);
   };
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
+          Get In <span className="text-primary">Touch</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -58,85 +79,107 @@ export const ContactSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">
-              {" "}
+            <h3 className="text-2xl font-semibold mb-6 text-center">
               Contact Information
             </h3>
 
-            <div className="space-y-6 justify-center">
+            <div className="space-y-6 max-w-md mx-auto pl-8 md:pl-12">
+              {/* Email */}
               <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
+                <div className="p-3 rounded-full bg-primary/10 flex-shrink-0">
+                  <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium"> Email</h4>
+                  <h4 className="font-medium mb-1">Email</h4>
                   <a
                     href="mailto:jovancojojo268@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors block"
                   >
                     jovancojojo268@gmail.com
                   </a>
                 </div>
               </div>
+
+              {/* Phone */}
               <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
+                <div className="p-3 rounded-full bg-primary/10 flex-shrink-0">
+                  <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium"> Phone</h4>
+                  <h4 className="font-medium mb-1">Phone</h4>
                   <a
-                    href="tel:+11234567890"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    href="tel:+6282147296071"
+                    className="text-muted-foreground hover:text-primary transition-colors block"
                   >
-                      +62 821 4729 6071
+                    +62 821 4729 6071
                   </a>
                 </div>
               </div>
+
+              {/* Location */}
               <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
+                <div className="p-3 rounded-full bg-primary/10 flex-shrink-0">
+                  <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                      Kudus, Central Java, Indonesia
-                  </a>
+                  <h4 className="font-medium mb-1">Location</h4>
+                  <p className="text-muted-foreground">
+                    Kudus, Central Java, Indonesia
+                  </p>
                 </div>
               </div>
             </div>
 
+            {/* Social Media */}
             <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
+              <h4 className="font-medium mb-4 text-center">Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="https://www.linkedin.com/in/jovanco-nicholas-782921298" target="_blank">
-                  <Linkedin />
+                <a
+                  href="https://www.linkedin.com/in/jovanco-nicholas-782921298"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                >
+                  <Linkedin className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                 </a>
-                <a href="#" target="_blank">
-                  <Twitter />
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                >
+                  <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                 </a>
-                <a href="#" target="_blank">
-                  <Instagram />
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                >
+                  <Instagram className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                 </a>
-                <a href="#" target="_blank">
-                  <Twitch />
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                >
+                  <Twitch className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                 </a>
               </div>
             </div>
           </div>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
+          {/* Form Section */}
+          <div className="bg-card p-8 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-semibold mb-6 text-center">Send a Message</h3>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium mb-2"
                 >
-                  {" "}
                   Your Name
                 </label>
                 <input
@@ -144,7 +187,7 @@ export const ContactSection = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   placeholder="John..."
                 />
               </div>
@@ -154,7 +197,6 @@ export const ContactSection = () => {
                   htmlFor="email"
                   className="block text-sm font-medium mb-2"
                 >
-                  {" "}
                   Your Email
                 </label>
                 <input
@@ -162,7 +204,7 @@ export const ContactSection = () => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   placeholder="john@gmail.com"
                 />
               </div>
@@ -172,14 +214,14 @@ export const ContactSection = () => {
                   htmlFor="message"
                   className="block text-sm font-medium mb-2"
                 >
-                  {" "}
                   Your Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
+                  rows="5"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none transition-all"
                   placeholder="Hello, I'd like to talk about..."
                 />
               </div>
@@ -188,7 +230,8 @@ export const ContactSection = () => {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
+                  "cosmic-button w-full flex items-center justify-center gap-2",
+                  isSubmitting && "opacity-70 cursor-not-allowed"
                 )}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}

@@ -64,27 +64,37 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    /* Light Mode - Tema Langit Siang dengan Biru & Oranye */
+    --background: 195 53% 79%;  /* Sky blue yang lebih saturated */
+    --foreground: 213 75% 15%;  /* Navy blue gelap untuk teks */
 
-    --card: 0 0% 100%;
+    --card: 0 0% 100%;  /* Putih murni untuk card */
 
-    --primary: 250 47% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 24 95% 53%;  /* Oranye cerah (selaras dengan matahari) */
+    --primary-foreground: 0 0% 100%;  /* Putih untuk teks di button */
 
-    --border: 214 32% 91%;
+    --border: 210 40% 85%;  /* Border biru muda lembut */
+    
+    /* Accent colors */
+    --accent: 213 85% 35%;  /* Blue accent untuk highlight */
+    --accent-foreground: 0 0% 100%;
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
+    /* Dark Mode - Tema Cosmic dengan Ungu & Biru */
+    --background: 222 47% 4%;  /* Dark cosmic background */
+    --foreground: 213 31% 91%;  /* Light gray untuk teks */
 
-    --card: 222 47% 8%;
+    --card: 222 47% 8%;  /* Card sedikit lebih terang dari background */
 
-    --primary: 250 65% 65%;
-    --primary-foreground: 213 31% 91%;
+    --primary: 262 83% 68%;  /* Ungu cerah cosmic */
+    --primary-foreground: 210 40% 98%;  /* Putih untuk teks di button */
 
-    --border: 217 33% 20%;
+    --border: 217 33% 17%;  /* Border lebih gelap untuk contrast */
+    
+    /* Accent colors */
+    --accent: 217 91% 60%;  /* Blue accent untuk highlight */
+    --accent-foreground: 213 31% 91%;
   }
 
   * {
@@ -140,8 +150,22 @@
 
 @utility cosmic-button {
   @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+         transition-all duration-300 hover:shadow-[0_0_15px_rgba(251,146,60,0.6)]
          hover:scale-105 active:scale-95;
+}
+
+/* Light mode button enhancement */
+:root .cosmic-button {
+  box-shadow: 0 4px 14px 0 rgba(251, 146, 60, 0.39);
+}
+
+/* Dark mode button enhancement */
+.dark .cosmic-button {
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39);
+}
+
+.dark .cosmic-button:hover {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
 }
 
 @utility star {
@@ -152,6 +176,24 @@
 @utility meteor {
   @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
   box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Card styling improvements */
+.card {
+  @apply bg-card border border-border;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+:root .card {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.dark .card {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  backdrop-filter: blur(10px);
+  background: rgba(28, 25, 49, 0.6);
 }
 
 #root {

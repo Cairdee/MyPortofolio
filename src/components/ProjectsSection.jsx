@@ -15,7 +15,7 @@ const projects = [
     title: "Application Campaign Coffee",
     description:
       "Mobile-Based Cafe Reservation Application with Real-Time Updates.",
-    image: "/projects/project2.png",
+    image: "/projects/CampaignCoffee.png",
     tags: ["Flutter", "PHP", "MySQL", "Laravel"],
     demoUrl: "#",
     githubUrl: "https://github.com/Cairdee/backend-campaign-coffe.git",
@@ -25,7 +25,7 @@ const projects = [
     title: "Website Student List",
     description:
       "Project Student List is a simple web application I built to manage and display student details. Created as a student at SMK Raden Umar Said (RUS), it showcases my web development skills.",
-    image: "/projects/project3.png",
+    image: "/projects/WebsiteStudentList.jpeg",
     tags: ["PHP", "Laravel"],
     demoUrl: "#",
     githubUrl: "https://github.com/Cairdee/StudentList.git",
@@ -62,8 +62,8 @@ export const ProjectsSection = () => {
 
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                  {project.tags.map((tag, index) => (
+                    <span key={index} className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
                       {tag}
                     </span>
                   ))}
