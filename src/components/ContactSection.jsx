@@ -83,17 +83,17 @@ export const ContactSection = () => {
               Contact Information
             </h3>
 
-            <div className="space-y-6 max-w-md mx-auto pl-8 md:pl-12">
+            <div className="space-y-8 max-w-md mx-auto px-4 md:pl-12">
               {/* Email */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                <div className="p-4 rounded-full bg-primary/10 flex-shrink-0">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
-                <div>
-                  <h4 className="font-medium mb-1">Email</h4>
+                <div className="text-center sm:text-left">
+                  <h4 className="font-medium mb-2">Email</h4>
                   <a
                     href="mailto:jovancojojo268@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors block"
+                    className="text-foreground hover:text-primary transition-colors block"
                   >
                     jovancojojo268@gmail.com
                   </a>
@@ -101,15 +101,15 @@ export const ContactSection = () => {
               </div>
 
               {/* Phone */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                <div className="p-4 rounded-full bg-primary/10 flex-shrink-0">
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
-                <div>
-                  <h4 className="font-medium mb-1">Phone</h4>
+                <div className="text-center sm:text-left">
+                  <h4 className="font-medium mb-2">Phone</h4>
                   <a
                     href="tel:+6282147296071"
-                    className="text-muted-foreground hover:text-primary transition-colors block"
+                    className="text-foreground hover:text-primary transition-colors block"
                   >
                     +62 821 4729 6071
                   </a>
@@ -117,13 +117,13 @@ export const ContactSection = () => {
               </div>
 
               {/* Location */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                <div className="p-4 rounded-full bg-primary/10 flex-shrink-0">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
-                <div>
-                  <h4 className="font-medium mb-1">Location</h4>
-                  <p className="text-muted-foreground">
+                <div className="text-center sm:text-left">
+                  <h4 className="font-medium mb-2">Location</h4>
+                  <p className="text-foreground">
                     Kudus, Central Java, Indonesia
                   </p>
                 </div>
