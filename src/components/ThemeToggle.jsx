@@ -34,7 +34,9 @@ export const ThemeToggle = () => {
       className={cn(
         "fixed top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
         "focus:outline-none",
-        "hover:bg-primary/10"
+        "hover:bg-primary/10",
+        isDarkMode ? "bg-card/50" : "bg-white/50",
+        "shadow-md"
       )}
       aria-label="Toggle theme"
     >
